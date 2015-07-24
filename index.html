@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="HAL: An exploration of the Web Speech API">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>HAL: An exploration of the Web Speech API</title>
+        <link rel="stylesheet" href="node_modules/normalize.css/normalize.css">
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,300,700,100' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="css/screen.css">
+    </head>
+    <body>
+        <audio id="siri_on" preload="auto" autobuffer>
+            <source src="sound/siri_on.mp3" />
+        </audio>
+        <audio id="siri_off" preload="auto" autobuffer>
+            <source src="sound/siri_off.mp3" />
+        </audio>
+
+        <div class="robot-container">
+            <span class="robot-component">
+                <div class="robot-bubble">
+                    <img class="robot" src="img/robot_off.svg">
+                </div>
+            </span>
+            <p>HAL is <span class="robot-listening-not">not </span>listening.</p>
+            <p class="robot-listening-not">Say &ldquo;OK HAL&rdquo; to make him start listening.</p>
+            <p class="robot-listening">Say &ldquo;Goodbye HAL&rdquo; to make him stop listening.</p>
+        </div>
+
+        <iframe class="main-frame" src="docs.html"></iframe>
+
+        <footer>
+            <p>This project is an exploration of the <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API</a>, which allows <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section">voice recognition</a> (speech to text), as well as <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section">speech synthesis</a> (text to speech). More information can be found on the <a href="https://developers.google.com/web/updates/2014/01/Web-apps-that-talk---Introduction-to-the-Speech-Synthesis-API?hl=en">Google Developers site</a></p>
+            <h2>Credits</h2>
+            <p><a href="https://thenounproject.com/term/robot/11018/">Robot icon by Ricardo Moreira</a></p>
+
+            <h3>Speech to text</h3>
+            <a href="https://www.talater.com/annyang/">Annyang</a> provides a convenient wrapper around the <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#speechreco-section">voice recognition</a> part of the <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API</a>.
+
+            <h3>Text to speech</h3>
+            <p><a href="http://responsivevoice.org/">Responsive Voice</a> provides a convenient wrapper around the <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section">speech synthesis</a> part of the <a href="https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html">Web Speech API</a>, and is used under the <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">non-commercial license</a></p>
+            <img src="img/120x31.png">
+        </footer>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="js/annyang.min.js"></script>
+        <script src="js/responsivevoice.js"></script>
+        <script src="node_modules/whatwg-fetch/fetch.js"></script>
+        <script src="js/main.js"></script>
+    </body>
+</html>

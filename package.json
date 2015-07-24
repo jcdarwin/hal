@@ -1,0 +1,15 @@
+{
+  "name": "hal",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "normalize.css": "^3.0.3",
+    "whatwg-fetch": "^0.9.0"
+  }
+}
