@@ -1,15 +1,14 @@
 {
   "name": "hal",
   "version": "0.1.0",
-  "description": "",
+  "description": "HAL is a robotic assistant that can respond to certain voice commands.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Jason Darwin",
+  "license": "MIT",
   "dependencies": {
-    "normalize.css": "^3.0.3",
-    "whatwg-fetch": "^0.9.0"
+    "normalize.css": "^3.0.3"
   }
 }
