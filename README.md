@@ -36,6 +36,10 @@ We can also view it on https://jcdarwin.github.io/hal/ which has the advantage t
 
 [Responsive Voice](http://responsivevoice.org/) provides a convenient wrapper around the [speech synthesis](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html#tts-section) part of the [Web Speech API](https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html), and is used under the [non-commercial license](http://creativecommons.org/licenses/by-nc-nd/4.0/)
 
+### JSONP
+
+We use [JSONProxy](https://jsonp.afeld.me/) to allow us to pull in cross-domain JSON (from a site we trust).
+
 ### Fonts
 
 Of course, the font used in this project is Roboto (Slab)

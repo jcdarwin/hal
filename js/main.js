@@ -171,6 +171,37 @@ var news_read = function(section, field) {
 	}
 }
 
+var news_sections = function(section) {
+	section = section ? section.toLowerCase() : '';
+	var sections = [];
+	for (var i=0; i<stories.length; i++) {
+		var story = stories[i];
+		sections[story.section] = sections[story.section] ? ++sections[story.section] : 1;
+	}
+
+	var speech = '';
+	if (section) {
+		if (sections[section] == 1) {
+			speech = 'There is ' + sections[section]  + ' ' + section + ' story. ';
+		} else {
+			speech = 'There are ' + sections[section]  + ' ' + section + ' stories. ';
+		}
+	} else {
+		speech = Object.keys(sections).map(function(item, index){
+			if (sections[item] == 1) {
+				return 'There is ' + sections[item]  + ' ' + item + ' story. ';
+			} else {
+				return 'There are ' + sections[item]  + ' ' + item + ' stories. ';
+			}
+		}).join('');
+	}
+
+	if (listening) {
+console.log(speech);
+		talk(speech);
+	}
+}
+
 var news_next = function() {
 	news_read(storySection);
 }
@@ -236,8 +267,13 @@ if (annyang) {
 
 		'show (me) the news': news,
 		'show (me) the :section news': news,
+		'how many stories': news_sections,
+		'how many :section stories': news_sections,
 		'read (me) the news': news_read,
+		'read (me) the stories': news_read,
 		'read (me) the :section news': news_read,
+		'read (me) the :section stories': news_read,
+		'read (me) the :section story': news_read,
 		'next (story)': news_next,
 		'more (news)': news_more,
 
@@ -304,16 +340,19 @@ function stripHTML(dirtyString) {
 }
 
 var stories = [];
-var jsonUrl = 'data/stories.json';
+var jsonUrl = 'https://jsonp.afeld.me/?callback=cb&url=http://www.stuff.co.nz/_json/?limit=50&with_straps=1&mtime=0';
 
-var jsonFeed = fetch(jsonUrl)
-	.then(function(response) {
-		return response.json();
-	})
-	.then(function(data) {
+$.ajax({
+   type: 'GET',
+    url: jsonUrl,
+    async: false,
+    jsonpCallback: 'cb',
+    contentType: "application/json",
+    dataType: 'jsonp',
+    success: function(json) {
 		// populate our sections with initial content
-		data.stories.forEach( function( el, i ) {
-			var story = data.stories[i];
+		json.stories.forEach( function( el, i ) {
+			var story = json.stories[i];
 
 			var section = story.path.split(/\//)[1];
 
@@ -327,8 +366,8 @@ var jsonFeed = fetch(jsonUrl)
 
 			stories.push(item);
 		});
-
-		return stories;
-	}).then(function(){
-		//console.log(stories);
-	});
+    },
+    error: function(e) {
+       console.log(e.message);
+    }
+});
