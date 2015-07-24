@@ -20,6 +20,10 @@ Unfortuantely, HAL's not always a good listener, and will easily get confused by
 
 Open the dev tools console and you'll see debug output showing what he hears.
 
+This site can be seen on GitHub Pages, i.e. http://jcdarwin.github.io/hal/
+
+We can also view it on https://jcdarwin.github.io/hal/ which has the advantage that we don't get continually asked permission for the microphone, however we can't then load http pages into the iFrame.
+
 ## Credits
 
 [Robot icon by Ricardo Moreira](https://thenounproject.com/term/robot/11018/)
