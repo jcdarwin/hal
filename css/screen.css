@@ -24,8 +24,10 @@ h3+p {
 }
 
 #flickrLoader p {
+/*
     background: url(../img/flickr.png) no-repeat 0 7px;
     padding-left: 39px
+*/
 }
 
 #flickrLoader {
