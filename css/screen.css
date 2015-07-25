@@ -14,6 +14,24 @@ h3+p {
     margin-top: 0;
 }
 
+#unsupported {
+	text-align: center;
+    color: #f25f5c;
+}
+
+.hidden {
+	display: none;
+}
+
+#flickrLoader p {
+    background: url(../img/flickr.png) no-repeat 0 7px;
+    padding-left: 39px
+}
+
+#flickrLoader {
+    height: 40px
+}
+
 .columnar {
 	display: flex;
 	flex-wrap: wrap;
@@ -53,6 +71,10 @@ a:visited {
 
 .main-frame.main-frame--news {
     height: 7200px;
+}
+
+.main-frame.main-frame--can-i-use {
+    height: 1600px;
 }
 
 .robot-container {

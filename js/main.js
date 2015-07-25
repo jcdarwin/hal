@@ -9,6 +9,7 @@ var listening = false,
 
 var reset = function () {
 	$('.main-frame').removeClass('main-frame--news');
+	$('#flickrGallery').empty().hide();
 }
 
 var ok = function() {
@@ -94,7 +95,7 @@ function isNumeric(n) {
 /******************************************************************************/
 
 var news = function(section) {
-	if (listening) {
+	if (listening && window.location.protocol == 'http:') {
 		var url;
 		if (section) {
 			switch(section) {
@@ -197,7 +198,6 @@ var news_sections = function(section) {
 	}
 
 	if (listening) {
-console.log(speech);
 		talk(speech);
 	}
 }
@@ -239,6 +239,58 @@ var what_are_the_three_laws = function() {
 	}
 }
 
+var can_i_use_web_speech = function() {
+	if (listening) {
+		var url = 'http://caniuse.com/#feat=web-speech';
+		$('.main-frame').attr('src', url);
+		$('.main-frame').addClass('main-frame--can-i-use');
+
+		talk("Web Speech API support is only partially implemented, and not in all browsers");
+	}
+}
+
+var pictures = function(phrase) {
+	if (listening) {
+		var url = 'https://www.google.co.nz/search?q=' + encodeURIComponent(phrase)+ '&safe=off&es_sm=119&tbm=isch';
+		$('.main-frame').attr('src', url);
+
+		var url = 'http://api.flickr.com/services/rest/?tags='+tag;
+		 $.getJSON(url);
+
+		talk("Here's some pictures of " + phrase);
+	}
+}
+
+var jsonFlickrApi = function(results) {
+	$('#flickrLoader p').fadeOut('slow');
+	var photos = results.photos.photo;
+	$.each(photos, function(index, photo) {
+		$(document.createElement("img"))
+			.attr({ src: '//farm'+photo.farm+'.staticflickr.com/'+photo.server+'/'+photo.id+'_'+photo.secret+'_s.jpg' })
+			.addClass("flickrGallery")
+			.appendTo(flickrGallery);
+	});
+};
+
+var pictures = function(tag) {
+	if (listening && window.location.protocol == 'https:') {
+		$('#flickrGallery').show();
+		$('#flickrLoader p').text('Searching for '+tag).fadeIn('fast');
+		var url = '//api.flickr.com/services/rest/?method=flickr.photos.search&api_key=a828a6571bb4f0ff8890f7a386d61975&sort=interestingness-desc&per_page=9&format=json&callback=jsonFlickrApi&tags='+tag;
+
+		$.ajax({
+			type: 'GET',
+			url: url,
+			async: false,
+			jsonpCallback: 'jsonFlickrApi',
+			contentType: "application/json",
+			dataType: 'jsonp'
+		});
+
+		talk("Here's some pictures of " + tag);
+	}
+};
+
 var kick_someone = function() {
 	if (listening) {
 		talk("HAL kicks Mitch");
@@ -261,6 +313,8 @@ if (annyang) {
 		'help': help,
 		'help *hal': help,
 		'stop (*hal)': stop,
+		'can I use web speech (*hal)': can_i_use_web_speech,
+		'show me pictures of *phrase': pictures,
 
 		'what is :number :operation :number': what_is_number_operation_number,
 		'what is :number :operation :operation :number': what_is_number_complex_operation_number,
@@ -297,6 +351,10 @@ if (annyang) {
 
 	// Start listening. You can call this here, or attach this call to an event, button, etc.
 	annyang.start();
+} else {
+	$(document).ready(function() {
+	  $('#unsupported').fadeIn('fast');
+	});
 }
 
 var voiceStartCallback = function () {
