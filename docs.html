@@ -35,6 +35,8 @@
         	<div class="column">
 		        <h2>Reading the News</h2>
 		        <ul>
+		            <li class="http">&ldquo;Show me the news&rdquo;</li>
+		            <li class="http">&ldquo;Show me the (national) news&rdquo;</li>
 		            <li>&ldquo;Read me the news&rdquo;</li>
 		            <li>&ldquo;How many stories?&rdquo;</li>
 		            <li>&ldquo;How many (national) stories?&rdquo;</li>
@@ -46,6 +48,8 @@
 		        <ul>
 		            <li>&ldquo;What are the three laws?&rdquo;</li>
 		            <li>&ldquo;Open the pod bay doors, HAL&rdquo;</li>
+		            <li class="https">&ldquo;Show me pictures of (cats)&rdquo;</li>
+		            <li class="https">&ldquo;Remove the pictures&rdquo;</li>
 		        </ul>
 		    </div>
 		</div>
@@ -70,5 +74,14 @@
 
 		</footer>
 
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+		<script>
+			if (window.location.protocol !== 'https:') {
+				$('.https').addClass('hidden');
+			}
+			if (window.location.protocol !== 'http:') {
+				$('.http').addClass('hidden');
+			}
+		</script>
     </body>
 </html>

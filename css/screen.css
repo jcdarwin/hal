@@ -32,6 +32,10 @@ h3+p {
     height: 40px
 }
 
+#flickrGallery {
+	text-align: center;
+}
+
 .columnar {
 	display: flex;
 	flex-wrap: wrap;

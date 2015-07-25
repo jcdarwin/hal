@@ -55,7 +55,6 @@ var what_is_number_complex_operation_number = function(operand1, operation1, ope
 }
 
 var what_is_number_operation_number = function(operand1, operation, operand2) {
-console.log(operation);
 	if (listening) {
 		if (isNumeric(operand1) && isNumeric(operand2)) {
 			switch(operation) {
@@ -291,6 +290,13 @@ var pictures = function(tag) {
 	}
 };
 
+var clear_pictures = function() {
+	if (listening) {
+		$('#flickrGallery').empty().hide();
+		talk("All pictures removed");
+	}
+}
+
 var kick_someone = function() {
 	if (listening) {
 		talk("HAL kicks Mitch");
@@ -314,7 +320,10 @@ if (annyang) {
 		'help *hal': help,
 		'stop (*hal)': stop,
 		'can I use web speech (*hal)': can_i_use_web_speech,
+
 		'show me pictures of *phrase': pictures,
+		'remove the pictures': clear_pictures,
+		'clear the pictures': clear_pictures,
 
 		'what is :number :operation :number': what_is_number_operation_number,
 		'what is :number :operation :operation :number': what_is_number_complex_operation_number,
