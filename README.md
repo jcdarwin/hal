@@ -26,6 +26,12 @@ We can also view it on https://jcdarwin.github.io/hal/ which has the advantage t
 
 ## Credits
 
+### Colour palette
+
+Courtesy of [Coolors](http://coolors.co/app/50514f-f25f5c-ffe066-247ba0-70c1b3)
+
+### Icons
+
 [Robot icon by Ricardo Moreira](https://thenounproject.com/term/robot/11018/)
 
 ### Speech to text
